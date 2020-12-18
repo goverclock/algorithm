@@ -31,7 +31,7 @@ int main(){
         if(C(mid)) l = mid;
         else r = mid;
     }
-    cout << int(r * 1000) << endl;
+    cout << int(r * 1000) << endl;      // 注意这个输出方式, 向下取整, 试了其它的许多方法没有发现其它正确的做法
 
     return 0;
 }
