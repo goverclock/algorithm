@@ -52,3 +52,71 @@ int main() {
 
     return 0;
 }
+
+
+// 就算你用二分也没办法!
+
+
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+long long k, n, m, t, ct;
+int s[500010], tmp[500010];
+
+inline int read() {
+    int x = 0, f = 1;
+    char ch = getchar();
+    while (!isdigit(ch)) {
+        if (ch == '-') f = -1;
+        ch = getchar();
+    }
+    while (isdigit(ch)) {
+        x = x * 10 + ch - 48;
+        ch = getchar();
+    }
+    return x * f;
+}
+
+bool check(int l, int r) {
+    long long sum = 0;
+    if(r - l <= 0) return true;
+    for (int i = l; i <= r; i++) tmp[i] = s[i];
+    sort(tmp + l, tmp + r + 1);
+    for (int i = 1; i <= m && r + 1 - l >= 2 * i; i++) {
+        sum += (tmp[l + i - 1] - tmp[r - i + 1]) *
+               (tmp[l + i - 1] - tmp[r - i + 1]);
+        if (sum > t) return false;
+    }
+    return true;
+}
+
+int main() {
+    scanf("%d", &k);
+    while (k--) {
+        ct = 0;
+        scanf("%d%d%d", &n, &m, &t);
+        for (int i = 1; i <= n; i++) s[i] = read();
+
+        int begin = 1;
+        while (begin < n) {
+            int l = begin, r = n;
+            while (l < r) {
+                int mid = r + l + 1 >> 1;
+                if (check(begin, mid))
+                    l = mid;
+                else
+                    r = mid - 1;
+            }
+            ct++;
+            begin = r + 1;
+            if(begin == n) ct++;
+        }
+
+        printf("%d\n", ct);
+    }
+
+    return 0;
+}
