@@ -1,0 +1,23 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "qSingleInput",
+		"body": [
+			"#include <algorithm>",
+			"#include <cstdio>",
+			"#include <iostream>",
+			"#include <string>",
+			"#include <vector>",
+			"using namespace std;",
+			"",
+			"$0",
+			"",
+			"int main(){",
+			"",
+			"",
+			"    return 0;",
+			"}",
+		],
+		"description": "A cpp file template for problem set with single input data."
+	}
+}

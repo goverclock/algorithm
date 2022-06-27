@@ -1,0 +1,22 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "qFastRead",
+		"body": [
+			"inline int read() {",
+			"    char ch = getchar();",
+			"    int x = 0, f = 1;",
+			"    while (ch > '9' || ch < '0') {",
+			"        if (ch == '-') f = -1;",
+			"        ch = getchar();",
+			"    }",
+			"    while (ch >= '0' && ch <= '9') {",
+			"        x = x * 10 + ch - '0';",
+			"        ch = getchar();",
+			"    }",
+			"    return x * f;",
+			"}",
+		],
+		"description": "A cpp fast read template."
+	}
+}

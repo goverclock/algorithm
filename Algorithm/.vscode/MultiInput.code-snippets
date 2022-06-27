@@ -1,0 +1,28 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "qMultiInput",
+		"body": [
+			"#include <algorithm>",
+			"#include <cstdio>",
+			"#include <cstring>",
+			"#include <iostream>",
+			"using namespace std;",
+			"",
+			"$0",
+			"",
+			"void solve(){",
+			"",
+			"}",
+			"",
+			"int main(){",
+			"    int t;",
+			"    scanf(\"%d\", &t);",
+			"    while(t--) solve();",
+			"",
+			"    return 0;",
+			"}",
+		],
+		"description": "A cpp file template for problem set with multiple input data."
+	}
+}
