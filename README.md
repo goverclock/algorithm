@@ -1,4 +1,1 @@
-This repo contains my code for competitive programming or leetcode.
-
-Algorithm/ is my configuration for writing such code.
-
+I no longer focus on this because I found something more interesting :P
