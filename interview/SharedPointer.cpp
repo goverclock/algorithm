@@ -3,10 +3,8 @@
 template<typename T>
 class SharedPointer {
 public:
-	// constructor
-	SharedPointer(T* ptr = nullptr) :ptr_(ptr), count_(new int(1)) {}
+	SharedPointer(T *ptr = nullptr) : ptr_(ptr), count_(new int(1)) {}
 
-	// destructor
 	~SharedPointer() {
 		(*count_)--;
 		if (*count_ == 0) {
@@ -15,19 +13,14 @@ public:
 		}
 	}
 
-	// copy constructor
-	SharedPointer(const SharedPointer& other) {
-		if (this == &other) {
-			return;
-		}
+	SharedPointer(const SharedPointer &other) {
 		ptr_ = other.ptr_;
 		count_ = other.count_;
 		(*count_)++;
 	}
 
-	// operator= overload
-	SharedPointer& operator=(const SharedPointer &other) {
-		if (ptr_ == other.ptr_) {
+	SharedPointer &operator=(const SharedPointer &other) {
+		if (this == &other) {
 			return *this;
 		}
 		(*count_)--;
@@ -41,13 +34,11 @@ public:
 		return *this;
 	}
 
-	//operator* overload
-	T& operator*() const {
+	T &operator*() const {
 		return *ptr_;
 	}
 
-	//operator-> overload
-	T* operator->() const {
+	T *operator->() const {
 		return ptr_;
 	}
 
@@ -61,8 +52,6 @@ private:
 };
 
 int main() {
-
-
 	return 0;
 }
 
