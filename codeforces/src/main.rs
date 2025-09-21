@@ -3,7 +3,32 @@ use std::io::{self, BufWriter, StdoutLock, Write};
 
 use cf::*;
 
-fn solve(_out: &mut BufWriter<StdoutLock>) {}
+fn solve(_out: &mut BufWriter<StdoutLock>) {
+    let (n, m) = read_2();
+    let mut cows = vec![];
+    for i in 0..n {
+        let mut v = read_many::<usize>();
+        v.sort_unstable();
+        v.insert(0, i);
+        cows.push(v);
+    }
+    cows.sort_by_key(|v| v[1]);
+
+    let mut accu = 0;
+    for i in 0..m {
+        for j in 0..n {
+            if cows[j][i + 1] != accu {
+                println!("-1");
+                return;
+            }
+            accu += 1;
+        }
+    }
+    for i in 0..n {
+        print!("{} ", cows[i][0] + 1);
+    }
+    println!()
+}
 
 fn main() {
     let out = &mut BufWriter::new(io::stdout().lock());

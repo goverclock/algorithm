@@ -1,7 +1,45 @@
 #[allow(unused)]
 use cf::*;
 
-fn main() {}
+fn main() {
+    let (n, m) = read_2();
+
+    let mut assign: Vec<Option<i64>> = vec![None; n + 1];
+    let mut edges: Vec<Vec<(usize, i64)>> = vec![vec![]; n + 1];
+
+    for _ in 0..m {
+        let mut it = read_many::<i64>().into_iter();
+        let (u, v, w) = (
+            it.next().unwrap() as usize,
+            it.next().unwrap() as usize,
+            it.next().unwrap(),
+        );
+        edges[u].push((v, w));
+        edges[v].push((u, -w));
+    }
+
+    for i in 1..=n {
+        if assign[i].is_none() {
+            assign[i] = Some(0);
+            dfs(i, &edges, &mut assign);
+        }
+    }
+
+    // println!("assign={assign:?}");
+    for i in 1..=n {
+        print!("{} ", assign[i].unwrap());
+    }
+    println!();
+}
+
+fn dfs(cur: usize, edges: &Vec<Vec<(usize, i64)>>, assign: &mut Vec<Option<i64>>) {
+    for to in edges[cur].iter() {
+        if assign[to.0].is_none() {
+            assign[to.0] = Some(assign[cur].unwrap() + to.1);
+            dfs(to.0, edges, assign);
+        }
+    }
+}
 
 #[allow(unused)]
 mod cf {
